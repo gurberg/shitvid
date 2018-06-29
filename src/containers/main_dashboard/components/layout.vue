@@ -128,7 +128,7 @@
 
 <script>
 
-// const Promise = require('bluebird')
+const Promise = require('bluebird')
 // const { spawn } = require('child_process')
 
 export default {
@@ -143,12 +143,18 @@ export default {
     },
     makeShitty (inputFile) {
       let i = 0
+      let originalI = 0
       let limit = 2
       let iterations = []
 
+      let inputFilename
       while (i < limit) {
-        let inputFilename = 'iteration_app_' + String(i) + '.mp4'
-        let outputFilename = 'iteration_app_' + String(i + 1) + '.mp4'
+        if (i === originalI) {
+          inputFilename = inputFile
+        } else {
+          inputFilename = window.process.cwd() + '/iteration_app_' + String(i) + '.mp4'
+        }
+        let outputFilename = window.process.cwd() + '/iteration_app_' + String(i + 1) + '.mp4'
         let iteration = { i: inputFilename, o: outputFilename }
 
         if (i % 2 === 0) {
@@ -168,7 +174,7 @@ export default {
       // // // //
 
       function processVideo (iteration) {
-        console.log(iteration)
+        console.log('PROCESSING: ', iteration)
 
         return new Promise((resolve, reject) => {
           let args = ['-i', iteration.i, '-vf', `scale=${iteration.scale}`, iteration.o, '-hide_banner']
@@ -195,9 +201,9 @@ export default {
       console.log(iterations)
       console.log(processVideo)
       window.processVideo = processVideo
-      // Promise.each(iterations, processVideo).then(() => {
-      //   console.log('DONE')
-      // })
+      Promise.each(iterations, processVideo).then(() => {
+        console.log('DONE')
+      })
     }
   }
 }
