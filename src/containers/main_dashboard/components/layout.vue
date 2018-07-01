@@ -121,10 +121,6 @@
                   <p class="mb-0">{{ each.inputFile }}</p>
                 </div>
               </div>
-              <!-- <div class="row"> -->
-                <!-- <div class="col-sm-12"> -->
-                  <!-- <small>Filename</small> -->
-                <!-- </div> -->
             </li>
           </ul>
         </b-col>

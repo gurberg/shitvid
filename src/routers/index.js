@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // Module routes
-import { MainHomeRoute, MainDashboardRoute } from './main'
+import { MainHomeRoute, MainDashboardRoute, MainSettingsRoute } from './main'
 
 // Vue Router setup
 Vue.use(Router)
@@ -11,6 +11,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     MainHomeRoute,
+    MainSettingsRoute,
     MainDashboardRoute
   ]
 })
