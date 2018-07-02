@@ -5,7 +5,7 @@
       <div class="row">
         <!-- Queue -->
         <b-col md="6">
-          <JobForm :new_job="new_job" />
+          <JobForm :job="new_job" />
         </b-col>
 
         <!-- Queue -->
@@ -14,25 +14,17 @@
           <!-- /////// -->
           <!-- TODO - this should be moved into each queue item -->
           <!-- TODO - add settings page to edit the number of workers available -->
-          <pre class="bg-dark text-light">{{ new_job }}</pre>
-          <div class="h4 m-0">24.9%</div>
-          <div>Processing iteration 24 of 100...</div>
-          <b-progress height={} class="progress-white progress-xs my-3" :value="25"/>
-          <small class="text-muted">All shitty things come with time :)</small>
+          <!-- <pre class="bg-dark text-light">{{ new_job }}</pre> -->
+          <!-- <div class="h4 m-0">24.9%</div> -->
+          <!-- <div>Processing iteration 24 of 100...</div> -->
+          <!-- <b-progress height={} class="progress-white progress-xs my-3" :value="25"/> -->
+          <!-- <small class="text-muted">All shitty things come with time :)</small> -->
           <!-- /////// -->
 
           <hr>
           <p class="lead mb-0">Queue</p>
           <small class="text-muted">Queue your pretty videos here</small>
-          <ul class="list-group mt-2">
-            <li class="list-group-item bg-dark border-light" v-for="each in queue">
-              <div class="row">
-                <div class="col-sm-12">
-                  <p class="mb-0">{{ each.inputFile }}</p>
-                </div>
-              </div>
-            </li>
-          </ul>
+          <Queue/>
         </b-col>
       </div>
 
@@ -43,6 +35,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import JobForm from './JobForm'
+import Queue from './Queue'
 import Promise from 'bluebird'
 
 // TODO - move somewhere else such that this only runs while in browser-development
@@ -55,10 +48,10 @@ window.process = {
 export default {
   name: 'dashboard',
   components: {
-    JobForm
+    JobForm,
+    Queue
   },
   computed: mapGetters({
-    queue: 'video/queue',
     new_job: 'video/new_job'
   }),
   methods: {
