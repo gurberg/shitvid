@@ -1,7 +1,7 @@
 // import createPersistedState from 'vuex-persistedstate'
 import Vue from 'vue'
 import Vuex from 'vuex'
-import device from './device'
+import video from './video'
 import notification from './notification'
 
 // Vuex Initialization
@@ -12,7 +12,7 @@ Vue.use(Vuex)
 // and getters.
 export default new Vuex.Store({
   modules: {
-    device,
+    video,
     notification
   }
   // plugins: [createPersistedState()]
