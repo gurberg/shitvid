@@ -93,10 +93,14 @@
 </template>
 
 <script>
-import _ from 'lodash'
+// import _ from 'lodash'
+import { mapGetters } from 'vuex'
 
 export default {
   props: ['job'],
+  computed: mapGetters({
+    queue: 'video/queue'
+  }),
   methods: {
     onUpload (e) {
       console.log('ON UPLOAD')
@@ -113,7 +117,7 @@ export default {
       this.queue.push(this.job)
 
       // Resets job
-      this.job = _.clone(this.proto_job)
+      // this.job = _.clone(this.proto_job)
     }
   }
 }
